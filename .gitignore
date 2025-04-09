@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Виртуальные окружения
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Pytest
+.cache/
+*.cover
+*.log
+*.xml
+*.html
+
+
+# Логи
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Конфиденциальные файлы
+*.env
