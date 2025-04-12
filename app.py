@@ -12,7 +12,7 @@ collections.MutableMapping = collections.abc.MutableMapping
 
 def train(Gen_phtm, Gen_phtp, Disc_m, Disc_p, loader, opt_gen_ptm, opt_gen_ptp, opt_disc_m, opt_disc_p, l1_loss,
           mse_loss):
-    # Устанавливаем режим обучения
+    # Режим обучения
     Gen_phtm.train()
     Gen_phtp.train()
     Disc_m.train()
@@ -22,7 +22,7 @@ def train(Gen_phtm, Gen_phtp, Disc_m, Disc_p, loader, opt_gen_ptm, opt_gen_ptp, 
         st.write(f'=========== EPOCH №{epoch + 1} ===========')
 
         for batch_idx, (real_images, target_images) in enumerate(loader):
-            # Переместите данные на устройство
+            # Перемещение данных на устройство
             real_images = real_images.to(device)
             target_images = target_images.to(device)
 
@@ -80,7 +80,7 @@ def train(Gen_phtm, Gen_phtp, Disc_m, Disc_p, loader, opt_gen_ptm, opt_gen_ptp, 
 
 
 async def main():
-    # Создайте экземпляры моделей
+    # Создание экземпляров моделей
     gen_phtm = Gen_phtm().to(device)  # Model Monet to Photo
     gen_phtp = Gen_phtp().to(device)  # Model Picasso to Photo
     disc_m = Disc_m().to(device)  # Discriminator for Monet
@@ -98,7 +98,7 @@ async def main():
     except RuntimeError as e:
         print(f"Error loading models: {e}")
 
-    # Определите оптимизаторы и функции потерь
+    # Определение оптимизаторов и функций потерь
     opt_gen_ptm = torch.optim.Adam(gen_phtm.parameters(), lr=0.0002)
     opt_gen_ptp = torch.optim.Adam(gen_phtp.parameters(), lr=0.0002)
     opt_disc_m = torch.optim.Adam(disc_m.parameters(), lr=0.0002)
@@ -107,7 +107,7 @@ async def main():
     l1_loss = torch.nn.L1Loss()
     mse_loss = torch.nn.MSELoss()
 
-    # Включите режим обучения, если это необходимо
+    # Включение режима обучения, если это необходимо
     if st.button('Начать обучение моделей Моне и Пикассо'):
         train(gen_phtm, gen_phtp, disc_m, disc_p, loader, opt_gen_ptm, opt_gen_ptp, opt_disc_m, opt_disc_p, l1_loss,
               mse_loss)
@@ -125,17 +125,17 @@ async def main():
         image = Image.open(uploaded_file)
         st.image(image, caption='Загруженное изображение', use_container_width=True)
         if st.button('Сгенерировать изображение'):
-            # Преобразуйте изображение в массив NumPy
+            # Преобразование изображения в массив NumPy
             image_np = np.array(image)
 
-            # Примените трансформации
+            # Применение трансформаций
             image_tensor = transforms(image=image_np)['image'].unsqueeze(0).to(device)
 
             with torch.no_grad():
                 generated_image_ptm = gen_phtm(image_tensor)  # Генерация изображения в стиле Моне
                 generated_image_ptp = gen_phtp(image_tensor)  # Генерация изображения в стиле Пикассо
 
-            # Преобразуйте результат обратно в изображение
+            # Преобразование результатов обратно в изображение
             generated_image_ptm = generated_image_ptm.squeeze(0).permute(1, 2, 0).cpu().numpy()
             generated_image_ptm = (generated_image_ptm * 255).astype('uint8')
 
