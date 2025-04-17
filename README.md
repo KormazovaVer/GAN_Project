@@ -82,7 +82,9 @@ Identity Loss: для сохранения информации о входно�
 2. https://colab.research.google.com/drive/1dFqQFnXM8jBz5FYcDrQRXrRWn2WMs0Rq?usp=sharing - модель Пикассо
 3. https://colab.research.google.com/drive/1e1ESQPzyjYpx54sZNgPhanv-ou0w0I67?usp=sharing - дообученная модель Моне
 4. https://colab.research.google.com/drive/11ULiskWRikLABU7E9-oVII-70FYQ3mun?usp=sharing - модель Моне с фильтром 
-повышения резкости 
+повышения резкости
+5. https://colab.research.google.com/drive/1GQ3WwulJwZHEFj8GjSL-rrqXW5kQZ5Bv?usp=sharing - pre-trained CycleGAN model
+(style_monet)
 
 ## Установка
 
