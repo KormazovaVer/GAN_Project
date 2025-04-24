@@ -33,7 +33,7 @@
 изображений и аугментации данных.
 
 #### Загрузка данных:
-Датасет картин Клода Моне и фотографий взят с kaggle https://www.kaggle.com/datasets/balraj98/monet2photo.
+Датасет картин Клода Моне и фотографий взят с kaggle https://www.kaggle.com/competitions/gan-getting-started/data.
 Датасет картин Пабло Пикассо собран из открытых источников.
 
 #### Определение классов:
